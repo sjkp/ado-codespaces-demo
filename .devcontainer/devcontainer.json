@@ -4,7 +4,6 @@
 	"name": ".NET (C#), Node.js (TypeScript)",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
-	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
@@ -40,9 +39,15 @@
 		"ghcr.io/rchaganti/vsc-devcontainer-features/azurebicep:1": {},
 		"ghcr.io/azure/azure-dev/azd:0": {
 
+		},
+		"ghcr.io/microsoft/codespace-features/external-repository:latest": {
+			"cloneUrl": "https://dev.azure.com/delegate/Delegate/_git/vsts-browserextensions",
+			"folder": "/workspaces/ado-repos"
 		}
-	}
-
+	},
+	"workspaceFolder": "/workspaces/ado-repos",
+	"initializeCommand": "mkdir -p ${localWorkspaceFolder}/../ado-repos",
+	"postStartCommand": "external-git clone && external-git config"     
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
 }
